@@ -14,7 +14,7 @@
     tools:context="com.vygutis.helloworld.MainActivity">
 
     <TextView
-        android:text="Hello Vygutis"
+        android:text="Hello Vygutis ir Pupsis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </RelativeLayout>
