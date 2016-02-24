@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button ourButton;
     private TextView ourMessage;
+    private int timesClicked = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,13 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener ourOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ourMessage.setText("The button was pressed");
+                timesClicked += 1;
+//                String total = Integer.toString(timesClicked);
+                String result = "The button was pressed " + timesClicked + " time";
+                if(timesClicked != 1) {
+                    result += 's';
+                }
+                ourMessage.setText(result);
             }
         };
 
@@ -59,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast toastMessage = Toast.makeText(this, "The settings menu option was pressed", Toast.LENGTH_LONG);
+            Toast toastMessage = Toast.makeText(this, "Text value now is: " + ourMessage.getText() + " RESET NOW!", Toast.LENGTH_LONG);
             toastMessage.show();
+            timesClicked = 0;
             return true;
         }
 
