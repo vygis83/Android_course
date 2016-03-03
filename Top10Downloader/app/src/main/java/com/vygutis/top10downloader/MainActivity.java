@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -29,18 +30,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Button btnParse = (Button) findViewById(R.id.btnParse);
-        ListView listView = (ListView) findViewById(R.id.xmlListView);
-        DownloadData downloadData = new DownloadData();
-        downloadData.execute("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=10/xml");
-
+        btnParse = (Button) findViewById(R.id.btnParse);
         btnParse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ParseApplications parseApplications = new ParseApplications(mFileContents);
                 parseApplications.process();
+                ArrayAdapter<Application> arrayAdapter = new ArrayAdapter<>(
+                        MainActivity.this, R.layout.list_item, parseApplications.getApplications());
+                listApps.setAdapter(arrayAdapter);
             }
         });
+        listApps = (ListView) findViewById(R.id.xmlListView);
+        DownloadData downloadData = new DownloadData();
+        downloadData.execute("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=10/xml");
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
