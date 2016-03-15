@@ -28,7 +28,7 @@ public class FlickrRecyclerViewAdapter extends RecyclerView.Adapter<FlickrImageV
     @Override
     public FlickrImageViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.browse, null);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.browse, viewGroup, false);
         FlickrImageViewHolder flickrImageViewHolder = new FlickrImageViewHolder(view);
         return flickrImageViewHolder;
     }
@@ -37,16 +37,25 @@ public class FlickrRecyclerViewAdapter extends RecyclerView.Adapter<FlickrImageV
     public void onBindViewHolder(FlickrImageViewHolder holder, int i) {
 
         Photo photoItem = mPhotosList.get(i);
-        Log.d(LOG_TAG, "Processing: " + photoItem.getmTitle() + " --> " + Integer.toString(i));
-        Picasso.with(mContext).load(photoItem.getmImage())
+        Log.d(LOG_TAG, "Processing: " + photoItem.getImage() + " --> " + Integer.toString(i));
+        Picasso.with(mContext).load(photoItem.getImage())
                 .error(R.drawable.placeholder)
                 .placeholder(R.drawable.placeholder)
                 .into(holder.thumbnail);
-        holder.title.setText(photoItem.getmTitle());
+        holder.title.setText(photoItem.getTitle());
     }
 
     @Override
     public int getItemCount() {
         return (null != mPhotosList ? mPhotosList.size() : 0);
+    }
+
+    public void loadNewData(List<Photo> newPhotos) {
+        mPhotosList = newPhotos;
+        notifyDataSetChanged();
+    }
+
+    public Photo getPhoto(int position) {
+        return (null != mPhotosList ? mPhotosList.get(position) : null);
     }
 }
