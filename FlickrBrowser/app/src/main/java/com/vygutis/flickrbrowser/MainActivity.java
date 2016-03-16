@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(MainActivity.this, "Normal tap", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Press and hold longer to see photo details", Toast.LENGTH_SHORT).show();
             }
 
             @Override
