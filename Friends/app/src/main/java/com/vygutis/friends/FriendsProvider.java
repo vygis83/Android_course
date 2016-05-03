@@ -82,7 +82,7 @@ public class FriendsProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         Log.v(TAG,"insert(uri=" + uri + ", values=" + values.toString());
-        final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
 
         switch (match) {
@@ -97,7 +97,7 @@ public class FriendsProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         Log.v(TAG,"update(uri=" + uri + ", values=" + values.toString());
-        final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
 
         String selectionCriteria = selection;
@@ -127,7 +127,7 @@ public class FriendsProvider extends ContentProvider {
             return 0;
         }
 
-        final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
 
         switch (match) {
