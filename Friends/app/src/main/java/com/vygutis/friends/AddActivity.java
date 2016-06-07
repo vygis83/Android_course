@@ -15,7 +15,7 @@ import android.widget.Toast;
 /**
  * Created by luksyvyg on 03/06/2016.
  */
-public class AddActivity extends FragmentActivity{
+public class AddActivity extends FragmentActivity {
 
     private final String LOG_TAG = AddActivity.class.getSimpleName();
     private TextView mNameTextView, mEmailTextView, mPhoneTextView;
